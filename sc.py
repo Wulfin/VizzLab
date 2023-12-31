@@ -20,4 +20,4 @@ def csv_to_json(csv_file_path, json_file_path, num_rows=5000):
 
 # Replace 'input.csv' with the path to your CSV file
 # Replace 'output.json' with the desired name/path for your JSON file
-csv_to_json('spotify_songs.csv', 'spotify_songs.json')
+csv_to_json('spotify_songs.csv', 'spotify_songs.json', num_rows=30000)
