@@ -1,7 +1,18 @@
 /* Reset default margin and padding */
-body, h1, h2, h3, p, ul, li {
+body, h2, h3, p, ul, li {
     margin: 0;
     padding: 0;
+}
+
+h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 3em; /* Make the font bigger */
+    text-align: center; /* Center the text */
+    color: #2c3e50; /* Dark blue color */
+    padding: 20px; /* Add some space around the text */
+    margin-bottom: 40px; /* Add some space below the text */
+    border-bottom: 2px solid #bdc3c7; /* Add a bottom border */
+    font-weight: bold; /* Make the font bold */
 }
 
 /* Body styles */
@@ -16,6 +27,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 }
 
 /* Centering text in chart containers */
@@ -38,7 +50,7 @@ p {
     display: flex;
     flex-direction: column;
     align-items: center;
-    max-width: 900px;
+    max-width: 1200px;
     width: 100%;
     transition: transform 0.5s ease;
 }
@@ -46,7 +58,7 @@ p {
 /* Chart container styles */
 .chart {
     width: 100%;
-    max-width: 900px;
+    max-width: 1200px;
     margin: 20px auto;
     background-color: #fff;
     border-radius: 8px;
@@ -60,9 +72,10 @@ p {
 #genre_div,
 #popularity_time_div,
 #duration_popularity_div,
-#top_artists_div {
+#top_artists_div,
+#speechiness_acousticness_div {
     width: 100%;
-    height: 500px; /* Set the height as needed */
+    height: 700px; /* Set the height as needed */
     background: linear-gradient(to right, #ff6347, #4682b4, #32cd32, #8a2be2, #ff8c00);
     background-size: 200% 100%;
     background-position: 100% 0;

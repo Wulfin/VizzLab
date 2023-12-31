@@ -1,4 +1,4 @@
-google.charts.load('current', {'packages':['corechart']});
+google.charts.load('current', {'packages':['corechart', 'treemap']});
 google.charts.setOnLoadCallback(init);
 
 function parseData() {
@@ -33,7 +33,7 @@ function drawHistogram(jsonData) {
         },
         vAxis: { 
             title: 'Popularity',
-            textStyle: { color: '#1a237e', fontSize: 14, fontName: 'Rockwell' }
+            textStyle: { color: '#1a237e', fontSize: 14, fontName: 'Times New Roman' }
         },
         colors: ['#ff0000'],
         backgroundColor: '#f8f9fa',
@@ -103,7 +103,7 @@ function drawPopularityOverTime(jsonData) {
         },
         vAxis: { 
             title: 'Average Popularity',
-            textStyle: { color: '#1a237e', fontSize: 14, fontName: 'Rockwell' }
+            textStyle: { color: '#1a237e', fontSize: 14, fontName: 'Times New Roman' }
         },
         colors: ['#ff0000'],
         backgroundColor: '#f8f9fa',
@@ -134,7 +134,7 @@ function drawDurationVsPopularity(jsonData) {
         },
         vAxis: { 
             title: 'Popularity',
-            textStyle: { color: '#1a237e', fontSize: 14, fontName: 'Rockwell' }
+            textStyle: { color: '#1a237e', fontSize: 14, fontName: 'Times New Roman' }
         },
         colors: ['#ff0000'],
         backgroundColor: '#f8f9fa',
@@ -176,7 +176,7 @@ function drawTopArtists(jsonData) {
         },
         vAxis: { 
             title: 'Artist',
-            textStyle: { color: '#1a237e', fontSize: 14, fontName: 'Rockwell' }
+            textStyle: { color: '#1a237e', fontSize: 14, fontName: 'Times New Roman' }
         },
         colors: ['#ff0000'],
         backgroundColor: '#f8f9fa',
@@ -186,6 +186,50 @@ function drawTopArtists(jsonData) {
     };
 
     var chart = new google.visualization.BarChart(document.getElementById('top_artists_div'));
+    chart.draw(data, options);
+}
+
+function drawSpeechinessAcousticnessBubbleChart(jsonData) {
+    let genreData = {};
+    jsonData.forEach(track => {
+        let genre = track.playlist_genre;
+        if (genreData[genre]) {
+            genreData[genre].speechinessTotal += parseFloat(track.speechiness);
+            genreData[genre].acousticnessTotal += parseFloat(track.acousticness);
+            genreData[genre].count++;
+        } else {
+            genreData[genre] = { 
+                speechinessTotal: parseFloat(track.speechiness), 
+                acousticnessTotal: parseFloat(track.acousticness), 
+                count: 1 
+            };
+        }
+    });
+
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'ID');
+    data.addColumn('number', 'Average Speechiness');
+    data.addColumn('number', 'Average Acousticness');
+    data.addColumn('string', 'Genre');
+    data.addColumn('number', 'Number of Tracks');
+    Object.keys(genreData).forEach(genre => {
+        let avgSpeechiness = genreData[genre].speechinessTotal / genreData[genre].count;
+        let avgAcousticness = genreData[genre].acousticnessTotal / genreData[genre].count;
+        data.addRow([genre, avgSpeechiness, avgAcousticness, genre, genreData[genre].count]);
+    });
+
+    var options = {
+        colorAxis: {colors: ['yellow', 'red']},
+        hAxis: {title: 'Average Speechiness',
+        textStyle: { color: '#01579b', fontSize: 14, fontName: 'Times New Roman' }
+    },
+        vAxis: {title: 'Average Acousticness',
+        textStyle: { color: '#1a237e', fontSize: 14, fontName: 'Times New Roman' }
+    },
+        bubble: {textStyle: {color: '#1a237e', fontSize: 14, fontName: 'Times New Roman'}}
+    };
+
+    var chart = new google.visualization.BubbleChart(document.getElementById('speechiness_acousticness_div'));
     chart.draw(data, options);
 }
 
@@ -201,6 +245,7 @@ function init() {
         drawPopularityOverTime(jsonData);
         drawDurationVsPopularity(jsonData);
         drawTopArtists(jsonData);
+        drawSpeechinessAcousticnessBubbleChart(jsonData);
     }).catch(error => {
         console.error("Failed to load and parse data:", error);
     });
