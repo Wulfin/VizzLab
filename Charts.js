@@ -27,8 +27,18 @@ function drawHistogram(jsonData) {
     var options = {
         title: 'Popularity Distribution of Tracks',
         legend: { position: 'none' },
-        hAxis: { title: 'Track Name' },
-        vAxis: { title: 'Popularity' }
+        hAxis: { 
+            title: 'Track Name',
+            textStyle: { color: '#01579b', fontSize: 14, fontName: 'Times New Roman' }
+        },
+        vAxis: { 
+            title: 'Popularity',
+            textStyle: { color: '#1a237e', fontSize: 14, fontName: 'Rockwell' }
+        },
+        colors: ['#ff0000'],
+        backgroundColor: '#f8f9fa',
+        titleTextStyle: { color: '#ff0000', fontSize: 16, fontName: 'Rockwell' },
+        legendTextStyle: { color: '#5e35b1', fontSize: 16, fontName: 'Arial' }
     };
 
     var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
@@ -52,6 +62,12 @@ function drawGenreDistribution(jsonData) {
     var options = {
         title: 'Genre Distribution',
         pieHole: 0.4,
+        colors: ['#ff0000', '#ff7f00', '#ffff00', '#00ff00', '#0000ff', '#4b0082', '#9400d3'],
+        backgroundColor: '#f8f9fa',
+        titleTextStyle: { color: '#ff0000', fontSize: 16, fontName: 'Rockwell' },
+        legendTextStyle: { color: '#5e35b1', fontSize: 12, fontName: 'Arial' },
+        fontName: 'Arial',
+        fontSize: 12
     };
 
     var chart = new google.visualization.PieChart(document.getElementById('genre_div'));
@@ -80,8 +96,19 @@ function drawPopularityOverTime(jsonData) {
 
     var options = {
         title: 'Popularity Over Time',
-        hAxis: { title: 'Year' },
-        vAxis: { title: 'Average Popularity' },
+        legend: { position: 'none' },
+        hAxis: { 
+            title: 'Year',
+            textStyle: { color: '#01579b', fontSize: 14, fontName: 'Times New Roman' }
+        },
+        vAxis: { 
+            title: 'Average Popularity',
+            textStyle: { color: '#1a237e', fontSize: 14, fontName: 'Rockwell' }
+        },
+        colors: ['#ff0000'],
+        backgroundColor: '#f8f9fa',
+        titleTextStyle: { color: '#ff0000', fontSize: 16, fontName: 'Rockwell' },
+        legendTextStyle: { color: '#5e35b1', fontSize: 16, fontName: 'Arial' },
         legend: 'none'
     };
 
@@ -100,8 +127,19 @@ function drawDurationVsPopularity(jsonData) {
 
     var options = {
         title: 'Duration vs. Popularity',
-        hAxis: { title: 'Duration (ms)' },
-        vAxis: { title: 'Popularity' },
+        legend: { position: 'none' },
+        hAxis: { 
+            title: 'Duration (ms)',
+            textStyle: { color: '#01579b', fontSize: 14, fontName: 'Times New Roman' }
+        },
+        vAxis: { 
+            title: 'Popularity',
+            textStyle: { color: '#1a237e', fontSize: 14, fontName: 'Rockwell' }
+        },
+        colors: ['#ff0000'],
+        backgroundColor: '#f8f9fa',
+        titleTextStyle: { color: '#ff0000', fontSize: 16, fontName: 'Rockwell' },
+        legendTextStyle: { color: '#5e35b1', fontSize: 16, fontName: 'Arial' },
         legend: 'none'
     };
 
@@ -131,8 +169,19 @@ function drawTopArtists(jsonData) {
 
     var options = {
         title: 'Top Artists by Average Track Popularity',
-        hAxis: { title: 'Average Popularity' },
-        vAxis: { title: 'Artist' },
+        legend: { position: 'none' },
+        hAxis: { 
+            title: 'Average Popularity',
+            textStyle: { color: '#01579b', fontSize: 14, fontName: 'Times New Roman' }
+        },
+        vAxis: { 
+            title: 'Artist',
+            textStyle: { color: '#1a237e', fontSize: 14, fontName: 'Rockwell' }
+        },
+        colors: ['#ff0000'],
+        backgroundColor: '#f8f9fa',
+        titleTextStyle: { color: '#ff0000', fontSize: 16, fontName: 'Rockwell' },
+        legendTextStyle: { color: '#5e35b1', fontSize: 16, fontName: 'Arial' },
         legend: 'none'
     };
 
